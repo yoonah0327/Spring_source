@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+모든 설정을 자바코드로 부터 분리, 외부화한다.
+혹은 annotation을 사용해 자바코드내에서 DI 설정을 할 수도 있다. 
+ -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!-- DI 중 constructor injection. 외부에서 만든 생성자 주입하기.  -->
+    <bean name="dataDaoImpl" class="model.DataDaoImpl" />
+    <bean id="serviceImpl" class="controller.ProcessServiceImpl">
+    	<constructor-arg>
+    		<ref bean="dataDaoImpl"/>
+    	</constructor-arg>
+    <!--con-arg 안쓰면 기본생성자만 만나고
+    public ProcessServiceImpl(DataDao dataDao) 
+		this.dataDao = dataDao; 가 null이 되고 public void selectProcess는 받을 값이 없어진다.
+		그래서 conarg써주는것.  
+		이걸 써줌으로써 dataDao에 dataDaoimpl이 들어가게 된다. 
+		++ 이부분 추가 설명 및 이해 요.
+	-->
+    </bean>
+   
+</beans>

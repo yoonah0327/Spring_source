@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 모든 설정을 자바코드로 부터 분리, 외부화한다. 혹은 annotation을 사용해 자바코드내에서 DI 설정을 할 수도 있다. -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- DI 중 Constructor Injection. 외부에서 만든 생성자 주입하기. -->
+	<bean id="myImpl" class="pack.controller.MyImpl"> 
+		<constructor-arg> <!-- argument가 있는 생성자이기에 추가적으로 선언 -->
+			<ref bean="sangpumImpl" />
+		</constructor-arg>
+	</bean>
+	
+	<bean id="sangpumImpl" class="pack.model.SangpumImpl" /> <!-- argument없는 생성자 -->
+</beans>

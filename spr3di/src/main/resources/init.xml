@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 모든 설정을 자바코드로 부터 분리, 외부화. 혹은 annotation을 사용해 자바코드내에서 DI 설정을 할 수도 있다. -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- DI 중 constructor injection. 외부에서 만든 생성자 주입하기. -->
+	<bean id="myProcess" class="pack.controller.MyProcess">
+		<!-- 파라미터있는 생성자 사용할거기에 con-arg해줘야한다 -->
+		<constructor-arg>
+		<!--  <ref bean="moneyCalc" />-->
+		<ref bean="kbs" /> <!-- bean 이름에 여러개 만들고 그중에 하나 쓸수있다. -->
+		</constructor-arg>
+	</bean>
+	
+	<bean id="moneyCalc" name="kbs,mbc,sbs" class="pack.model.MoneyCalc" />
+</beans>
