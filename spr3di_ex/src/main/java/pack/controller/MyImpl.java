@@ -21,12 +21,12 @@ public class MyImpl implements MyInter{ //extends sangpumImpl하면 이거하나
 	public void inputData() {// 스캐너를 통해 입력한 값들을 MoneyInter타입의 클래스이용해 계산
 		try {
 			Scanner sc = new Scanner(System.in);
-			System.out.println("상품명 입력: ");
+			System.out.print("상품명 입력: ");
 			sang = sc.next();
 			//String sang = sc.next();
-			System.out.println("수량 입력: ");
+			System.out.print("수량 입력: ");
 			int su = sc.nextInt();
-			System.out.println("단가 입력: ");
+			System.out.print("단가 입력: ");
 			int dan = sc.nextInt();
 			re= inter.calcMoney(sang, su, dan);
 			//rs= inter.calcMoney(sang, su, dan);
