@@ -17,4 +17,6 @@ http://www.springframework.org/schema/context http://www.springframework.org/sch
 
 <!-- Autowired를 사용한다면 -->
 <!-- 비워두던지 anno1.xml을 만들지 않아도 된다. -->
+
+	<context:component-scan base-package="anno1_auto"/>
 </beans>

@@ -1,6 +1,7 @@
 package anno1_auto;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -16,8 +17,12 @@ import org.springframework.stereotype.Service;
 public class SenderProcess {
 //@Autowired: Bean의 자동 삽입을 위해 사용하는 어노테이션. (name에 의한 매핑이 아닌, type 으로 매핑)
 	
-	@Autowired //멤버필드 주입 : 간단. 테스트불편. 제일 많이사용.
-	private Sender sender; //자동으로 sender타입의 인스턴스주소를 객체변수sender에 넣어줌.
+	//@Autowired //멤버필드 주입 : 간단. 테스트불편. 제일 많이사용.
+	//private Sender sender; //자동으로 sender타입의 인스턴스주소를 객체변수sender에 넣어줌.
+	
+	@Autowired
+	@Qualifier("sender")
+	private SenderInter senderInter;
 	
 	/*
 	@Autowired //setter 주입: 코드가 장황.
@@ -31,10 +36,13 @@ public class SenderProcess {
 	}
 	*/
 	
-	public Sender getSender() {
-		return sender;
-	}
+//	public Sender getSender() {
+//		return sender;
+//	}
+	
 	public void dispData() {
-		sender.show();
+		//sender.show();
+		senderInter.show();
+		
 	}
 }
