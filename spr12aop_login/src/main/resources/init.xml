@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+<!-- 컴포넌트스캔은 여기서 해줘도 되고, 밖에서 어노테이션으로 해도됨. 원래있던건 불요. 모두 지움.  -->
+<context:component-scan base-package="spr12aop_login"/> 
+
+<!-- AOP적용 -->
+<!--앞선 것들은 선언. 이 코드가 있어야 적용, 즉 처리가 된다. 없으면 핵심로직만 돌아간다. -->
+<aop:aspectj-autoproxy/>
+</beans>
