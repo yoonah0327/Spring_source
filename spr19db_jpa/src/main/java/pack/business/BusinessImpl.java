@@ -17,7 +17,7 @@ public class BusinessImpl implements BusinessInter{
 	public void dataPrint() {
 		List<MemDto> mlist = dataInterface.selectDataAll();
 		
-		System.out.println("🪸dataPrint 메소드에서 출력🪸");
+		System.out.println("\n🪸dataPrint 메소드에서 출력🪸");
 		for(MemDto m: mlist) {
 			System.out.println(m.getNum()+ "🪸"+m.getName()+ "🪸" +m.getAddr());
 		}

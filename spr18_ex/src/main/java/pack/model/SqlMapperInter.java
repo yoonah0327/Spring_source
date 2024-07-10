@@ -16,6 +16,5 @@ public interface SqlMapperInter {
 			+ "inner join buser on buser_num=buser_no "
 			+ "where (buser_num, jikwon_pay) in (select buser_num, max(jikwon_pay) from jikwon group by buser_num)")
 	public List<JikwonDto> selectDataBuserMax();
-	//select buser_name, jikwon_name, jikwon_pay from buser inner join jikwon on buser_no=buser_num 
-	//where jikwon_pay in(select max(jikwon_pay) from jikwon j where j.buser_num=jikwon.buser_num)
+	
 }

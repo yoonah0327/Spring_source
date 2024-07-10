@@ -3,16 +3,19 @@ package pack.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 @Data //게터세터
 @Builder//빌더패턴. 권장.
 @NoArgsConstructor //기본생성자선언
 @AllArgsConstructor//파라미터가있는 생성자선언
-@Entity(name="mem") // db의 특정 테이블과 매핑
+@Entity //?
+@Table(name="mem") // db의 특정 테이블과 매핑. 물리적테이블명 mem ? 
 public class MemDto { //카멜케이스로 작성하면 자동으로 언더스코어네이밍컨벤션(_)을 따른다.
 	
 	@Id //pk칼럼에 요렇게 붙임
