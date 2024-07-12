@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h2>🫐상품 자료 출력🫐</h2>
+<table>
+	<tr>
+		<td>아이디</td>
+		<td th:text="${dto.id}">ks0</td>
+	</tr>
+	<tr>
+		<td>상품명</td>
+		<td th:text="${dto.name}">표준제품</td>
+	</tr>
+	<tr>
+		<td>가 격</td>
+		<td th:text="${dto.price}">1000</td>
+	</tr>
+	<tr>
+		<td>등록일</td>
+		<td th:text="${dto.regDate}">2024-01-01</td>
+	</tr>
+	<tr>
+		<td colspan="2" th:text="|가격은 ${dto.price}, 등록일은 ${dto.regDate}입니다|"></td>
+		
+	</tr>
+</table>
+</body>
+</html>

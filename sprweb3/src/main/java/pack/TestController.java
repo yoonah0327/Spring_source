@@ -29,6 +29,8 @@ public class TestController {
 public class TestController {
 	@RequestMapping("test1") // get, post 모두 처리.
 	public ModelAndView abc() { // test1 요청이 들어오면 abc를 수행해. 디스패처 서블릿이 핸들러매핑에게 시킴.
+		//디스패처 서블릿으로부터 위임받은 핸들러 매핑이 @RequestMapping을 찾아감.
+		
 //		System.out.println("abc 처리");
 //		return null;
 		// return new ModelAndView("list", "msg", "hihi jsp");
@@ -43,7 +45,7 @@ public class TestController {
 		// HttpSErvletRequest를 사용해 키, 값으로 jsp에 전송하는방식이라고 이해하면됨.
 		return modelAndView;
 	}
-
+	
 	@RequestMapping(value = "test2", method = RequestMethod.GET) // get만 처리. 
 	public ModelAndView abc2() {
 		return new ModelAndView("list", "msg", "success2");
