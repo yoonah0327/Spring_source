@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+<body>
+
+ 	<th:block th:replace="fragments/header::header"></th:block><!--머릿글.고정 정적. -->
+
+    <div layout:fragment="content" class="content"></div><!-- 본문.유동적 동적. -->
+
+    <th:block th:replace="fragments/footer::footer"></th:block><!--바닥글.고정 정적. -->
+
+
+</body>
+</html>
