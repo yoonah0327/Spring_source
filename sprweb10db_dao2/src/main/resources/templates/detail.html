@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>template/detail.html</title>
+</head>
+<body>
+<h3>🥕 회원 상세보기 🥕</h3>
+아이디: [[${member.id}]]<br>
+비밀번호: [[${member.passwd}]]<br>
+회원명: [[${member.name}]]<br>
+등록일: [[${member.reg_date}]]<br>
+<br>
+<a th:href="@{/list}">목록</a>&nbsp;&nbsp;
+<a th:href="@{/update(id=${member.id})}">수정</a>&nbsp;&nbsp;
+<a th:href="@{/delete(id=${member.id})}">삭제</a>
+
+</body>
+</html>

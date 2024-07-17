@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h3>🥕 회원정보 수정 🥕</h3>
+<form th:action="@{/update}" method="post" th:object="${member}">
+<!--  오브젝트로 넘기면 *이 가능하다. -->
+id : [[*{id}]]
+<input type="hidden" name="id" th:field="*{id}"><br>
+<!-- <input type="text" th:field="*{id}" readonly="readonly"/> -->
+pwd : <input type="text" th:field="*{passwd}"><br>
+name : <input type="text" th:field="*{name}"><br>
+<!-- name, id가 불요. 페이지소스코드보면 자동으로 id, name을 만들어준다. -->
+<br>
+<input type="submit" value="수정">
+<input type="button" value="이전" onclick="history.back()">
+</form>
+</body>
+</html>
