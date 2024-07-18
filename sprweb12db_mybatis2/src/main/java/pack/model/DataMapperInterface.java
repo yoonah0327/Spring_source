@@ -11,12 +11,12 @@ import org.apache.ibatis.annotations.Update;
 import pack.controller.MemBean;
 
 @Mapper
-public interface DataMapperInterface {
+public interface DataMapperInterface {//마이바티스는 복수일경우 반드시 list. not arraylist.
 	@Select("select * from mem")
 	List<MemDto> selectAll();
 	
 	@Select("select * from mem where num=#{num}")
-	List<MemDto> selectPart(String num);
+	MemDto selectPart(String num);
 	
 	@Insert("insert into mem values(#{num}, #{name}, #{addr})")
 	int insertData(MemBean bean);

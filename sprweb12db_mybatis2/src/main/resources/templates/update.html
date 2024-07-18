@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>templates/update.html</title>
+</head>
+<body>
+<h3>🥦자료 수정🥦</h3>
+<form th:action="@{/update}" method="post" th:object="${data}">
+<!-- th:object로 값 받아서, ${data.num}로 뿌린다. 넘길땐 field * 로 넘긴다. -->
+번호 : <span th:text="${data.num}">번호</span><br>
+<input type="hidden" th:field="*{num}">
+<!-- 번호는 수정에서 제외. 보여만준다. 가지고 가야하기에, hidden으로 번호를 넘긴다. -->
+이름 : <input type="text" th:field="*{name}"><br>
+주소 : <input type="text" th:field="*{addr}"><br>
+<br>
+<input type="submit" value="수정">
+</form>
+</body>
+</html>

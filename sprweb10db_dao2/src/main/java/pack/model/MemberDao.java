@@ -19,27 +19,8 @@ public class MemberDao extends JdbcDaoSupport{
 		setDataSource(dataSource); //db연결정보 다 들어감. 
 		
 	}
-	// 보통injection은 field, constructor. 여기선 constructor임을 잊지말자.
 	
 	//전체자료 읽기
-	/*
-	 * public List<SangpumDto> getDataAll(){
-		String sql="select * from sangdata";
-		return (List)getJdbcTemplate().query(sql, new ItemRowMapper());
-	}
-	
-	class ItemRowMapper implements RowMapper<Object>{
-		@Override
-		public Object mapRow(ResultSet rs, int rowNum) throws SQLException {
-			SangpumDto dto = new SangpumDto();
-			dto.setCode(rs.getString("code"));
-			dto.setSang(rs.getString("sang"));
-			dto.setSu(rs.getString("su"));
-			dto.setDan(rs.getString("dan"));
-			return dto;
-		}
-	}
-	 */
 	public List<MemberDto> getMemberList(){
 		String sql = "select * from memberteb";
 		/*
