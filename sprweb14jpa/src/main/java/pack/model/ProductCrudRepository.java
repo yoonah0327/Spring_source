@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.relational.core.sql.TrueCondition;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
@@ -35,5 +36,9 @@ public interface ProductCrudRepository extends JpaRepository<ProductVo, Integer>
 	
 	@Query(value = "select p from ProductVo as p where p.code=?1 or p.sang=?2")
 	List<ProductVo> findByData(int code, String sang); //순서로 연결
+	
+	//native Query문 사용- jpql문으로 감당이 안되는 복잡한경우에만 예외로 사용.
+	@Query(value = "select code, sang, su, dan from provo where code <= 5", nativeQuery=true)
+	List<ProductVo> findAllData2();
 	
 }
