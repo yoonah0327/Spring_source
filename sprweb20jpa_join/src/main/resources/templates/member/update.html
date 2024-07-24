@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>templates/member/insert.html</title>
+</head>
+<body>
+<h3>수정성공</h3>
+<b th:text="${param.name}"></b>님의 정보를 수정했습니다🖤 <!-- 요기 param으로 받는다 -->
+<br>
+<a th:href="@{/member/mlist}">회원 목록 보기</a>
+</body>
+</html>
