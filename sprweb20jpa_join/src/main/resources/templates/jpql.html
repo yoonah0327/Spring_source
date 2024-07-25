@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>templates/jpql.html</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<style type="text/css">
+#inputSql {
+	background-color: black;
+	font-size: 30px;
+	color: white;
+	width:95%;
+	height: 300px;
+}
+</style>
+</head>
+<body>
+	<div class="container">
+		<h2>JPQL 테스트</h2>
+		<textarea id="inputSql" class="form-control">select e from Emp as e</textarea>
+		<br>
+		<button id="exeBtn" class="btn btn-primary">실행</button>
+		<div>
+			<pre><code id="result">json 결과출력공간</code></pre>
+		</div>
+	</div>
+<script type="text/javascript">
+document.querySelector("#exeBtn").addEventListener("click", ()=>{
+	const sql = document.querySelector("#inputSql").value;
+	
+	//URLSearchParams: 주소창의 경로를 다룰 수 있는 브라우저의 내장 객체
+	//URL에 쿼리문자열을 쉽게 구성및조작할수있는 web API
+	const queryString = new URLSearchParams({query:sql}).toString();
+	//alert(queryString);//query=select+e+from+Emp+as+e
+	
+	//요청정보: /jpql/test
+	fetch("[[@{/}]]jpql/test", {
+		method:"POST",
+		headers:{"Content-Type":"application/x-www-form-urlencoded;charset=utf-8"},
+		body:queryString  //요청 본문에 queryString 담아서 감
+		
+	})
+	.then(res => res.json())  // promise객체가 반환. 이때 json으로 변환. res response의 의미로 마음대로 변수잡음 
+	.then(data => {
+		console.log(data); //data도 내가 맘대로 선언해준 변수.
+	
+		const result = JSON.stringify(data, null, 3);
+		
+		document.querySelector("#result").innerText = result;
+	});
+	
+});
+</script>	
+</body>
+</html>

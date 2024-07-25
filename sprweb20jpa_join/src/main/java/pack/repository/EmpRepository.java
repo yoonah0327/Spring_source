@@ -11,6 +11,7 @@ import pack.entity.Emp;
 public interface EmpRepository extends JpaRepository<Emp, Integer>{
 	//메소드룰사용.
 	public List<Emp> findAllByOrderByEmpnoAsc();  //사원번호에 대해 오름차순 정렬된 목록 반환메소드.
+	public List<Emp> findAllByOrderByEmpnoDesc();
 	
 	//JPQL. 내맘대로메소드들
 	//findAllByOrderByEmpnoAsc() 메소드를 JPQL로 적는다면 아래와 같다. 

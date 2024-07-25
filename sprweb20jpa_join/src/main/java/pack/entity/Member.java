@@ -1,8 +1,5 @@
 package pack.entity;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -21,20 +18,16 @@ import pack.dto.MemberDto;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="MEMBER_TBL")
+@Table(name = "MEMBER_TBL")
 public class Member {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)//자동증가
+	@GeneratedValue(strategy = GenerationType.AUTO) // 자동증가
 	private Long num;
 	private String name;
 	private String addr;
-	
-	//dto를 entity로 변환
+
+	// dto를 entity로 변환
 	public static Member toEntity(MemberDto dto) {
-		return Member.builder()
-				.num(dto.getNum())
-				.name(dto.getName())
-				.addr(dto.getAddr())
-				.build();
+		return Member.builder().num(dto.getNum()).name(dto.getName()).addr(dto.getAddr()).build();
 	}
 }

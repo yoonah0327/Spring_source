@@ -45,8 +45,8 @@ public class MemberController {
 	}
 	@PostMapping("/member/update")
 	public String update(MemberDto fbean) { //리퀘스트파람으로 넘어가서 
-		mservice.update(fbean);
-		
+		//mservice.update(fbean); //단순수정
+		mservice.update2(fbean); //1차캐시재활용
 		return "member/update";
 	}
 	

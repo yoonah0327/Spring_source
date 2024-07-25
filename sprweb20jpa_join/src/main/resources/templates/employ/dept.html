@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>templates/employ/dept.html</title>
+</head>
+<body>
+	<h2>🌿부서정보 열람🌿</h2>
+	부서 번호:
+	<strong th:text="${dto.deptno}">deptno</strong>
+	<br> 부서 이름:
+	<span th:text="${dto.dname}">dname</span>
+	<br> 부서 위치:
+	<span th:text="${dto.loc}">loc</span>
+	<br> 근무 인원수:
+	<span th:text="${dto.count}">count</span>
+	<br>
+	<br>
+	<!-- dto에 선언한 변수들중 count가 있다. 넘겨준것이 엔티티가 아니라 디티오이기에 dto.count로 했을때 값이 넘어와 출력된다. -->
+	<h3>🌿🌿근무자 명단🌿🌿</h3>
+	<ul>
+		<li th:each="irum:${dto.names}">[[${irum}]]</li>
+	</ul>
+	<!-- dto에서 직원들이름출력해서, 빌드작업시 names로 넣어줬다 -->
+</body>
+</html>
