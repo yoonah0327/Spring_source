@@ -98,7 +98,7 @@ public class MemberController {
 		return Map.of("isSuccess", true);
 	}
 	
-	@DeleteMapping("/members/{num}")
+	@DeleteMapping("/members/{num}") //자료삭제하기
 	public Map<String, Object> delete(@PathVariable("num") int num){
 		dao.delete(num);
 		return Map.of("isSuccess", true);

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3"></script>
+  </head>
+  <body>
+    <div id="app">
+      직급입력 :
+      <input type="text" size="5" v-model="jik" />
+      <button @click="onclick">확인</button>
+      <table v-if="jikwon.length > 0">
+        <!--조건부렌더링-->
+        <tr>
+          <th>사번</th>
+          <th>이름</th>
+          <th>부서명</th>
+          <th>직급</th>
+          <th>연봉</th>
+        </tr>
+        <tr v-for="(j, index) in jikwon" :key="index">
+          <td>{{j.jikwon_no}}</td>
+          <td>{{j.jikwon_name}}</td>
+          <td>{{j.buser_name}}</td>
+          <td>{{j.jik}}</td>
+          <td>{{j.jikwon_pay}}</td>
+        </tr>
+        <tr>
+          <td colspan="5">인원수 {{jikwon.length}}</td>
+        </tr>
+        <tr>
+            <td colspan="5">연봉평균 {{avgPay}}</td>
+        </tr>
+      </table>
+    </div>
+    <script>
+      const {createApp} = Vue;
+      createApp({
+          data(){
+              return{
+                  jikwon: [],
+                  jik: "",
+                  avgPay:0,
+              };
+          },
+          methods: {
+              onclick(){
+                  if(this.jik === ""){
+                      alert("직급을 입력해주세요");
+                      return;
+                  }
+                  this.showFunc();
+              },
+              showFunc(){
+                  fetch('http://localhost:8080/'+ this.jik)
+                  .then(response => response.json()) // JSON으로 변환
+                  .then(data => {
+                      this.jikwon = data;
+
+                      const totalPay = this.jikwon.reduce((sum, jd) => sum + parseInt(jd.jikwon_pay || 0, 10), 0);
+                      this.avgPay = (totalPay / this.jikwon.length).toFixed(2);
+                  })
+                  .catch(error => {
+                      console.log('오류: ', error);
+                  });
+              },
+          },
+      }).mount("#app");
+    </script>
+  </body>
+</html>

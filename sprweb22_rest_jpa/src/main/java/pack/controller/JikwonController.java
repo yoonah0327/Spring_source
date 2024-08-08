@@ -13,7 +13,7 @@ import pack.repository.JikwonRepository;
 
 @CrossOrigin("*")
 @RestController
-//@RequestMapping("/jikwons")
+//@RequestMapping("/jikwon")
 public class JikwonController {
 	@Autowired
 	private JikwonRepository jikwonRepository;
