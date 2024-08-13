@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>파일 목록</h1>
+<div>
+	<a th:href="@{/insert}">파일추가</a>
+</div>
+
+<table>
+ <tr>
+  <th>번호</th><th>이름</th><th>전화</th><th>직업</th><th>사진</th>
+ </tr>
+ <tr th:each="friend:${friends}">
+  <td th:text="${friend.bunho}">1</td>
+  <td th:text="${friend.irum}">이희동</td>
+  <td th:text="${friend.junhwa}">010-2222-1234</td>
+  <td th:text="${friend.jikup}">파이썬개발자</td>
+  <td>
+  	<img th:src="'data:'+ ${friend.imagetype} + ';base64, '+ ${friend.base64Image}" style="width:150px;height:auto;">
+  </td>
+ </tr>
+</table>
+</body>
+</html>
