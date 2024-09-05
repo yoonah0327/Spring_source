@@ -8,6 +8,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 <script type="text/javascript">
 let stompClient = null;
+
 function connect(){
 	let socket = new SockJS('/ws');	// /ws 엔드포인트를 통해 WebSocket 연결객체를 생성
 	

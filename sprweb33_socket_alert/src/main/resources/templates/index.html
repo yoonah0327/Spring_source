@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.com">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.1/sockjs.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+<script type="text/javascript">
+let stompClient = null;
+
+function connect(){
+	let socket = new SockJS('/ws');	// /ws 엔드포인트를 통해 WebSocket 연결객체를 생성
+	
+	stompClient = Stomp.over(socket);
+	
+	stompClient.connect({}, function(frame){
+		console.log('connected : ' + frame);
+		// /topic/notifications을 구독하여 서버에서 메시지를 수신
+		stompClient.subscribe('/topic/notifications', 
+			function(noti){
+				let parseNoti = JSON.parse(noti.body);
+				
+				showNotiFunc(parseNoti.type, parseNoti.message);
+		});
+	})
+}
+function sendRequest(){
+	//alert("a");
+	let fromUser = document.getElementbyId("fromUser").value;
+	
+	if(fromUser.trim() === ""){
+		alert("사용자 이름 입력!");
+		return;
+	}
+	stompClient.send("/app/friend-request", {}, fromUser);
+}
+function sendComment(){
+	//alert("b");
+let fromUser = document.getElementbyId("fromUser").value;
+	
+	if(fromUser.trim() === ""){
+		alert("사용자 이름 입력!");
+		return;
+	}
+	stompClient.send("/app/comment", {}, fromUser);
+
+}
+function sendLike(){
+	//alert("c");
+let fromUser = document.getElementbyId("fromUser").value;
+	
+	if(fromUser.trim() === ""){
+		alert("사용자 이름 입력!");
+		return;
+	}
+	stompClient.send("/app/like", {}, fromUser);
+
+}
+function sendNotiFunc(){
+	//alert(type+ " "+ message);
+	let notiList = document.getElementById("notiShow");
+	let li = document.createElement("li");
+	
+	if(type === "좋아요"){
+		li.innerHTML = `${type}:${message} 💛`;
+	}else{
+		li.appendChild(document.createTextNode(`${type}:${message}`));
+	}
+	
+	notiShow.appendChild(li);
+}
+
+
+window.onload= connect;
+</script>
+</head>
+<body>
+	<h2>실시간알림</h2>
+	<div>
+		사용자 이름: <input type="text" id="fromUser" placeholder="이름 입력">
+	</div>
+	<br>
+	<div>
+		<b>이벤트 발생</b>
+		<button onclick="sendRequest()">친구요청</button>
+		<button onclick="sendComment()">댓글알림</button>
+		<button onclick="sendLike()">좋아요알림</button>
+	</div>
+	<br>
+	<div>
+		<b>알림: </b>
+		<ul id="notiShow"></ul>
+	</div>
+</body>
+</html>
